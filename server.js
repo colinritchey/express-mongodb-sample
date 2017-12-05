@@ -16,7 +16,7 @@ MongoClient.connect(`mongodb://${user}:${password}@ds129796.mlab.com:29796/expre
   if (err) return console.log(err)
   db = database;
 
-  app.listen(3000, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log('listening on 3000')
   });
 
