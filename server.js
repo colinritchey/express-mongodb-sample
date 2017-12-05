@@ -27,7 +27,16 @@ app.get('/', (req, res) => {
     if (err) return console.log(err)
     res.render('index.ejs', {quotes: result})
   })
-})
+});
+
+app.get('/quotes', (req, res) => {
+  db.collection('quotes').find().toArray((err, result) => {
+    if (err) return console.log(err)
+
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({quotes: result}));
+  })
+});
 
 app.post('/quotes', (req, res) => {
   db.collection('quotes').save(req.body, (err, result) => {
